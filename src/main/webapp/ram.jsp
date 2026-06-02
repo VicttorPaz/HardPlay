@@ -12,6 +12,14 @@
         avatarLogueado = (String) sesionNavbar.getAttribute("avatarUsuario");
     }
 %>
+
+<%
+    String alumnoActivo = (String) session.getAttribute("usuarioLogueado");
+    if (alumnoActivo != null) {
+        com.usuarios.seguridad.Usuario bitacoraHelper = new com.usuarios.seguridad.Usuario();
+        bitacoraHelper.registrarAccionBitacora(alumnoActivo, "El estudiante abrió la pestaña RAM");
+    }
+%>
 <!DOCTYPE html>
 <html lang="es">
 <head>

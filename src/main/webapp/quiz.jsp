@@ -11,7 +11,15 @@
         apodoLogueado = (String) sesionNavbar.getAttribute("usuarioLogueado");
         avatarLogueado = (String) sesionNavbar.getAttribute("avatarUsuario");
     }
-%><%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+%>
+
+<%
+    String alumnoActivo = (String) session.getAttribute("usuarioLogueado");
+    if (alumnoActivo != null) {
+        com.usuarios.seguridad.Usuario bitacoraHelper = new com.usuarios.seguridad.Usuario();
+        bitacoraHelper.registrarAccionBitacora(alumnoActivo, "El estudiante abrió el Quiz Desafío de Hardware");
+    }
+%>
 <!DOCTYPE html>
 <html lang="es">
 <head>

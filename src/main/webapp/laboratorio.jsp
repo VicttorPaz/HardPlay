@@ -12,6 +12,17 @@
         avatarLogueado = (String) sesionNavbar.getAttribute("avatarUsuario");
     }
 %>
+
+<%
+    // Recuperamos al alumno de la sesión
+    String alumnoActivo = (String) session.getAttribute("usuarioLogueado");
+    
+    if (alumnoActivo != null) {
+        // Si hay una sesión activa, guardamos su movimiento en la base de datos
+        com.usuarios.seguridad.Usuario bitacoraHelper = new com.usuarios.seguridad.Usuario();
+        bitacoraHelper.registrarAccionBitacora(alumnoActivo, "El estudiante ingresó e interactuó con el Laboratorio 3D");
+    }
+%>
 <!DOCTYPE html>
 <html lang="es">
 

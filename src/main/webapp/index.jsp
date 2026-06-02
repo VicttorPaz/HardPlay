@@ -1,15 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.usuarios.seguridad.Usuario" %>
 <%
-
     HttpSession sesionNavbar = request.getSession(false);
     String apodoLogueado = null;
     String avatarLogueado = null;
 
-  
     if (sesionNavbar != null && sesionNavbar.getAttribute("usuarioLogueado") != null) {
         apodoLogueado = (String) sesionNavbar.getAttribute("usuarioLogueado");
-        avatarLogueado = (String) sesionNavbar.getAttribute("avatarUsuario");
+        // CORRECCIÓN: Se cambió "avatarUsuario" por "avatarLogueado" para que coincida con la sesión
+        avatarLogueado = (String) sesionNavbar.getAttribute("avatarLogueado");
+    }
+
+    // CANDADO DE SEGURIDAD: Si por alguna razón el avatar llega nulo, le asignamos uno por defecto
+    if (avatarLogueado == null) {
+        avatarLogueado = "robot";
     }
 %>
 <!DOCTYPE html>
@@ -23,8 +27,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    
-  
 </head>
 <body>
 
@@ -56,7 +58,7 @@
                         <span class="user-nickname"><%= apodoLogueado %></span>
                     </div>
                     <div class="avatar-container-nav">
-                        <img src="https://api.dicebear.com/7.x/bottts/svg?seed=<%= avatarLogueado.equals("gato") ? "cat" : avatarLogueado %>" alt="Avatar">
+                        <img src="https://api.dicebear.com/7.x/bottts/svg?seed=<%= "gato".equals(avatarLogueado) ? "cat" : avatarLogueado %>" alt="Avatar">
                     </div>
                     <div class="profile-dropdown-menu">
                         <a href="logout.jsp"><i class="bi bi-box-arrow-right"></i> Salir del Juego</a>
@@ -93,7 +95,7 @@
                     <i class="bi bi-cpu-fill"></i>
                 </div>
                 <h3>Partes del Computador</h3>
-                <p>¡Explora los órganos del PC! Elige un component para descubrir sus secretos y jugar a sus minijuegos:</p>
+                <p>¡Explora los órganos del PC! Elige un componente para descubrir sus secretos y jugar a sus minijuegos:</p>
                 
                 <div class="parts-nav-buttons">
                     <a href="procesador.jsp" class="btn-part-link link-cpu"><i class="bi bi-cpu"></i> El Procesador</a>
