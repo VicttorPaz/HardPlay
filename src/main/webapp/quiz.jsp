@@ -1,12 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.usuarios.seguridad.Usuario" %>
 <%
-    // 1. Buscamos si existe una sesión activa en el navegador
     HttpSession sesionNavbar = request.getSession(false);
     String apodoLogueado = null;
     String avatarLogueado = null;
 
-    // 2. Si existe la sesión, extraemos los datos para personalizar el perfil
     if (sesionNavbar != null && sesionNavbar.getAttribute("usuarioLogueado") != null) {
         apodoLogueado = (String) sesionNavbar.getAttribute("usuarioLogueado");
         avatarLogueado = (String) sesionNavbar.getAttribute("avatarUsuario");
@@ -17,7 +15,7 @@
     String alumnoActivo = (String) session.getAttribute("usuarioLogueado");
     if (alumnoActivo != null) {
         com.usuarios.seguridad.Usuario bitacoraHelper = new com.usuarios.seguridad.Usuario();
-        bitacoraHelper.registrarAccionBitacora(alumnoActivo, "El estudiante abrió el Quiz Desafío de Hardware");
+        bitacoraHelper.registrarAccionBitacora(alumnoActivo, "El estudiante abrió el Quiz para Niños");
     }
 %>
 <!DOCTYPE html>
@@ -25,12 +23,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HardLearn - Quiz</title>
+    <title>HardLearn - Quiz Niños</title>
     <link rel="stylesheet" href="style/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <style>
+        .quiz-wrapper {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        .quiz-card {
+            background-color: #1a1a1a;
+            border: 1px solid #2d2d2d;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .quiz-card h3 {
+            color: #ffffff;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        .quiz-image-container {
+            text-align: center;
+            margin-bottom: 20px;
+            background-color: #111111;
+            border-radius: 8px;
+            padding: 15px;
+            border: 1px solid #252525;
+        }
+        .quiz-image {
+            max-height: 180px;
+            max-width: 100%;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .option-label {
+            display: flex;
+            align-items: center;
+            background-color: #222222;
+            border: 1px solid #333333;
+            border-radius: 8px;
+            padding: 14px 18px;
+            color: #dddddd;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+        }
+        .option-label:hover {
+            background-color: #2a2a2a;
+            border-color: #444444;
+            color: #ffffff;
+        }
+        .option-label input[type="radio"] {
+            margin-right: 15px;
+            accent-color: #ff9f1c;
+            transform: scale(1.1);
+        }
+        .option-label input[type="radio"]:checked + span {
+            color: #ff9f1c;
+            font-weight: 600;
+        }
+        .option-label:has(input[type="radio"]:checked) {
+            border-color: #ff9f1c;
+            background-color: rgba(255, 159, 28, 0.05);
+        }
+        .quiz-submit-btn {
+            background: linear-gradient(135deg, #ff9f1c, #f98404);
+            color: #ffffff;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 5px;
+        }
+        .quiz-submit-btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.95;
+        }
+        .badge-points {
+            float: right;
+            background-color: #252525;
+            color: #ff9f1c;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid rgba(255,159,28,0.2);
+        }
+    </style>
 </head>
 <body>
 
@@ -41,7 +137,6 @@
         <nav class="nav-bar">
             <ul>
                 <li><a href="index.jsp">Inicio</a></li>
-
                  <li class="dropdown">
                     <a href="#">Partes del Computador <i class="bi bi-chevron-down" style="font-size: 0.8rem;"></i></a>
                     <div class="dropdown-content">
@@ -49,10 +144,8 @@
                         <a href="ram.jsp"><i class="bi bi-memory"></i> Memoria RAM</a>
                         <a href="almacenamiento.jsp"><i class="bi bi-hdd-fill"></i> Almacenamiento</a>
                     </div>
-                </li>
-
+                 </li>
                 <li><a href="laboratorio.jsp">Laboratorio 3D</a></li>
-               
                 <li><a href="quiz.jsp" class="active">Quiz</a></li>
             </ul>
              <% if (apodoLogueado != null) { %>
@@ -78,9 +171,129 @@
 
     <main class="content-container">
         <section class="hero-section">
-            <h1>Quiz de Evaluación</h1>
-            <p>Pon a prueba lo aprendido sobre componentes informáticos básicos.</p>
+            <h1>Misión: Descubre el Hardware 🚀</h1>
+            <p>¡Responde estas preguntas y conviértete en un experto de las computadoras!</p>
         </section>
+
+        <div class="quiz-wrapper">
+            <form action="respuesta.jsp" method="POST">
+                
+                <div class="quiz-card">
+                    <span class="badge-points">Pregunta 1</span>
+                    <h3>1. Es conocido como el "cerebro" de la computadora porque piensa y organiza todo lo que haces. ¿Quién es?</h3>
+                    <div class="quiz-image-container">
+                        <img src="https://images.unsplash.com/photo-1591453089816-0fbb971b454c?q=80&w=600&auto=format&fit=crop" class="quiz-image" alt="Procesador">
+                    </div>
+                    <div class="options-container">
+                        <label class="option-label">
+                            <input type="radio" name="p1" value="A" required>
+                            <span>A) El Procesador (CPU)</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="p1" value="B">
+                            <span>B) El Teclado</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="p1" value="C">
+                            <span>C) El Ratón (Mouse)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="quiz-card">
+                    <span class="badge-points">Pregunta 2</span>
+                    <h3>2. Esta parte te ayuda a recordar tus juegos abiertos mientras juegas, pero si apagas la computadora, ¡se le olvida todo! ¿Qué es?</h3>
+                    <div class="quiz-image-container">
+                        <img src="https://images.unsplash.com/photo-1541029071515-84cc54f84dc5?q=80&w=600&auto=format&fit=crop" class="quiz-image" alt="Memoria RAM">
+                    </div>
+                    <div class="options-container">
+                        <label class="option-label">
+                            <input type="radio" name="p2" value="A" required>
+                            <span>A) Un Disco Duro</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="p2" value="B">
+                            <span>B) La Memoria RAM</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="p2" value="C">
+                            <span>C) Los Parlantes</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="quiz-card">
+                    <span class="badge-points">Pregunta 3</span>
+                    <h3>3. Es como una gran caja fuerte o mochila donde se guardan tus fotos, tareas y juegos de forma segura por mucho tiempo. ¿Qué componente es?</h3>
+                    <div class="quiz-image-container">
+                        <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=600&auto=format&fit=crop" class="quiz-image" alt="Almacenamiento">
+                    </div>
+                    <div class="options-container">
+                        <label class="option-label">
+                            <input type="radio" name="p3" value="A" required>
+                            <span>A) El Disco de Almacenamiento (SSD / HDD)</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="p3" value="B">
+                            <span>B) El Cable de Energía</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="p3" value="C">
+                            <span>C) La Pantalla</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="quiz-card">
+                    <span class="badge-points">Pregunta 4</span>
+                    <h3>4. ¿Cuál de estas partes sirve para "escribir" letras y números dentro de la pantalla?</h3>
+                    <div class="quiz-image-container">
+                        <img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?q=80&w=600&auto=format&fit=crop" class="quiz-image" alt="Teclado">
+                    </div>
+                    <div class="options-container">
+                        <label class="option-label">
+                            <input type="radio" name="p4" value="A" required>
+                            <span>A) El Teclado</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="p4" value="B">
+                            <span>B) La Impresora</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="p4" value="C">
+                            <span>C) El Procesador</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="quiz-card">
+                    <span class="badge-points">Pregunta 5</span>
+                    <h3>5. ¿Qué componente se encarga de dar "energía eléctrica" a todas las piezas para que la computadora pueda encender?</h3>
+                    <div class="quiz-image-container">
+                        <img src="https://images.unsplash.com/photo-1555664424-778a1e5e1b48?q=80&w=600&auto=format&fit=crop" class="quiz-image" alt="Fuente de poder">
+                    </div>
+                    <div class="options-container">
+                        <label class="option-label">
+                            <input type="radio" name="p5" value="A" required>
+                            <span>A) El Ventilador</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="p5" value="B">
+                            <span>B) La Fuente de Poder (Alimentación)</span>
+                        </label>
+                        <label class="option-label">
+                            <input type="radio" name="p5" value="C">
+                            <span>C) El Lector de CD</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div style="margin-top: 10px; margin-bottom: 40px;">
+                    <button type="submit" class="quiz-submit-btn">Finalizar mi Misión 🚀</button>
+                </div>
+
+            </form>
+        </div>
     </main>
 
     <footer class="main-footer">
