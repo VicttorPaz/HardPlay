@@ -36,6 +36,7 @@ public class Conexion
 		this.user="postgres";
 		this.pwd="1234";
 		this.cadena="jdbc:postgresql://localhost:5432/bd_hardware";
+		//this.cadena = "jdbc:postgresql://172.17.42.121:5432/bd_hardplay";
 		this.con=this.crearConexion();
 		
 	}

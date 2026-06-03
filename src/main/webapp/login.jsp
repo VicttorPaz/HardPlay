@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,6 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+     <%@ include file="asistente.jsp" %>
+   <script src="accesibilidad.js"></script>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -28,6 +29,49 @@
                             <h2 class="fw-bold text-primary">¡Hola de nuevo!</h2>
                             <p class="text-muted">Ingresa tus datos para seguir jugando</p>
                         </div>
+
+                        <%
+                            String error = request.getParameter("error");
+                            if (error != null) {
+                        %>
+                            <div class="mb-4 text-start">
+                                <% if (error.equals("bloqueado")) { %>
+                                    <div class="alert alert-danger d-flex align-items-center gap-3 rounded-3 shadow-sm border-2 border-danger" role="alert">
+                                        <i class="bi bi-shield-lock-fill fs-3 text-danger"></i>
+                                        <div>
+                                            <strong class="d-block text-danger fw-bold">¡Acceso Restringido!</strong>
+                                            <small class="text-secondary">Lo sentimos, tu perfil está temporalmente bloqueado. Contacta al administrador del sistema.</small>
+                                        </div>
+                                    </div>
+                                <% } else if (error.equals("incorrecto")) { %>
+                                    <div class="alert alert-warning d-flex align-items-center gap-3 rounded-3 shadow-sm border-2 border-warning" role="alert">
+                                        <i class="bi bi-exclamation-triangle-fill fs-3 text-warning"></i>
+                                        <div>
+                                            <strong class="d-block text-warning fw-bold">Error de ingreso</strong>
+                                            <small class="text-secondary">El usuario o la contraseña no son correctos. Inténtalo de nuevo.</small>
+                                        </div>
+                                    </div>
+                                <% } else if (error.equals("vacio")) { %>
+                                    <div class="alert alert-info d-flex align-items-center gap-3 rounded-3 shadow-sm border-2 border-info" role="alert">
+                                        <i class="bi bi-info-circle-fill fs-3 text-info"></i>
+                                        <div>
+                                            <strong class="d-block text-info fw-bold">Campos incompletos</strong>
+                                            <small class="text-secondary">Por favor escribe tu usuario y contraseña para ingresar.</small>
+                                        </div>
+                                    </div>
+                                <% } else { %>
+                                    <div class="alert alert-danger d-flex align-items-center gap-3 rounded-3 shadow-sm border-2 border-danger" role="alert">
+                                        <i class="bi bi-exclamation-octagon-fill fs-3 text-danger"></i>
+                                        <div>
+                                            <strong class="d-block text-danger fw-bold">Error del sistema</strong>
+                                            <small class="text-secondary">Hubo un problema al intentar conectar con la plataforma. Intenta más tarde.</small>
+                                        </div>
+                                    </div>
+                                <% } %>
+                            </div>
+                        <% 
+                            } 
+                        %>
 
                         <form action="respuestalogin.jsp" method="POST">
                             

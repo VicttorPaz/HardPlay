@@ -7,11 +7,9 @@
 
     if (sesionNavbar != null && sesionNavbar.getAttribute("usuarioLogueado") != null) {
         apodoLogueado = (String) sesionNavbar.getAttribute("usuarioLogueado");
-        // CORRECCIÓN: Se cambió "avatarUsuario" por "avatarLogueado" para que coincida con la sesión
         avatarLogueado = (String) sesionNavbar.getAttribute("avatarLogueado");
     }
 
-    // CANDADO DE SEGURIDAD: Si por alguna razón el avatar llega nulo, le asignamos uno por defecto
     if (avatarLogueado == null) {
         avatarLogueado = "robot";
     }
@@ -23,10 +21,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HardLearn - ¡Explora el Mundo de la Computación!</title>
     <link rel="stylesheet" href="style/style.css">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    
+    <script src="js/accesibilidad.js"></script>
 </head>
 <body>
 
@@ -44,6 +45,9 @@
                         <a href="procesador.jsp"><i class="bi bi-cpu"></i> El Procesador</a>
                         <a href="ram.jsp"><i class="bi bi-memory"></i> Memoria RAM</a>
                         <a href="almacenamiento.jsp"><i class="bi bi-hdd-fill"></i> Almacenamiento</a>
+                        <a href="grafica.jsp"><i class="bi bi-gpu-card"></i> Tarjeta Gráfica</a>
+                        <a href="fuente.jsp"><i class="bi bi-lightning-charge-fill"></i> Fuente de Poder</a>
+                        <a href="tarjetamadre.jsp"><i class="bi bi-controller"></i> Tarjeta Madre</a>
                     </div>
                 </li>
                 
@@ -60,7 +64,9 @@
                     <div class="avatar-container-nav">
                         <img src="https://api.dicebear.com/7.x/bottts/svg?seed=<%= "gato".equals(avatarLogueado) ? "cat" : avatarLogueado %>" alt="Avatar">
                     </div>
+                    
                     <div class="profile-dropdown-menu">
+                        <a href="perfil.jsp"><i class="bi bi-person-bounding-box"></i> Mi Perfil</a>
                         <a href="logout.jsp"><i class="bi bi-box-arrow-right"></i> Salir del Juego</a>
                     </div>
                 </div>
@@ -72,7 +78,7 @@
         </nav>
     </header>
 
-    <main class="content-container">
+    <main class="content-container" id="main-content">
         
         <section class="hero-section">
             <h1>¡Conviértete en un Súper Experto de PC!</h1>
@@ -101,6 +107,9 @@
                     <a href="procesador.jsp" class="btn-part-link link-cpu"><i class="bi bi-cpu"></i> El Procesador</a>
                     <a href="ram.jsp" class="btn-part-link link-ram"><i class="bi bi-memory"></i> Memoria RAM</a>
                     <a href="almacenamiento.jsp" class="btn-part-link link-storage"><i class="bi bi-hdd-fill"></i> Almacenamiento</a>
+                    <a href="grafica.jsp" class="btn-part-link link-gpu"><i class="bi bi-gpu-card"></i> Tarjeta Gráfica</a>
+                    <a href="fuente.jsp" class="btn-part-link link-power"><i class="bi bi-lightning-charge-fill"></i> Fuente de Poder</a>
+                    <a href="tarjetamadre.jsp" class="btn-part-link link-motherboard"><i class="bi bi-controller"></i> Tarjeta Madre</a>
                 </div>
             </div>
 
@@ -137,5 +146,6 @@
         <p>&copy; 2026 HardLearn - Proyecto Educativo de Hardware Especial para Niños</p>
     </footer>
 
+    <%@ include file="asistente.jsp" %>
 </body>
 </html>

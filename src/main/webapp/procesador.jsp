@@ -31,6 +31,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+     <%@ include file="asistente.jsp" %>
+   <script src="accesibilidad.js"></script>
 </head>
 <body>
 
@@ -44,10 +46,13 @@
                 
                  <li class="dropdown">
                     <a href="#">Partes del Computador <i class="bi bi-chevron-down" style="font-size: 0.8rem;"></i></a>
-                    <div class="dropdown-content">
+                       <div class="dropdown-content">
                         <a href="procesador.jsp"><i class="bi bi-cpu"></i> El Procesador</a>
                         <a href="ram.jsp"><i class="bi bi-memory"></i> Memoria RAM</a>
                         <a href="almacenamiento.jsp"><i class="bi bi-hdd-fill"></i> Almacenamiento</a>
+                        <a href="grafica.jsp"><i class="bi bi-gpu-card"></i> Tarjeta Gráfica</a>
+                        <a href="fuente.jsp"><i class="bi bi-lightning-charge-fill"></i> Fuente de Poder</a>
+                        <a href="tarjetamadre.jsp"><i class="bi bi-controller"></i> Tarjeta Madre</a>
                     </div>
                 </li>
                 
@@ -64,9 +69,10 @@
                     <div class="avatar-container-nav">
                         <img src="https://api.dicebear.com/7.x/bottts/svg?seed=<%= avatarLogueado.equals("gato") ? "cat" : avatarLogueado %>" alt="Avatar">
                     </div>
-                    <div class="profile-dropdown-menu">
-                        <a href="logout.jsp"><i class="bi bi-box-arrow-right"></i> Salir del Juego</a>
-                    </div>
+                     <div class="profile-dropdown-menu">
+                    <a href="perfil.jsp"><i class="bi bi-person-bounding-box"></i> Mi Perfil</a>
+                    <a href="logout.jsp"><i class="bi bi-box-arrow-right"></i> Salir del Juego</a>
+                </div>
                 </div>
             <% } else { %>
                 <a href="register.jsp" class="user-profile-icon" title="Mi Cuenta / Iniciar Sesión">

@@ -14,7 +14,7 @@
     if (userParam == null || userParam.trim().isEmpty() || 
         passParam == null || passParam.trim().isEmpty()) {
         
-        response.sendRedirect("login.jsp?error=Por+favor+escribe+tu+usuario+y+contrasenia");
+        response.sendRedirect("login.jsp?error=vacio");
         return;
     }
 
@@ -28,7 +28,7 @@
     try {
         c = con.getConexion();
         if (c == null) {
-            response.sendRedirect("login.jsp?error=Error+de+conexion+con+la+base+de+datos");
+            response.sendRedirect("login.jsp?error=conexion");
             return;
         }
 
@@ -50,7 +50,7 @@
             if (estadoBD == null) { estadoBD = "ACTIVO"; }
 
             if ("BLOQUEADO".equalsIgnoreCase(estadoBD)) {
-                response.sendRedirect("login.jsp?error=Tu+cuenta+ha+sido+bloqueada");
+                response.sendRedirect("login.jsp?error=bloqueado");
                 return;
             }
 
@@ -73,12 +73,12 @@
             return;
 
         } else {
-            response.sendRedirect("login.jsp?error=Usuario+o+contrasenia+incorrectos");
+            response.sendRedirect("login.jsp?error=incorrecto");
             return;
         }
 
     } catch (Exception ex) {
-        response.sendRedirect("login.jsp?error=Error+interno+del+servidor");
+        response.sendRedirect("login.jsp?error=servidor");
     } finally {
         try { if (rs != null) rs.close(); } catch (Exception e) {}
         try { if (pr != null) pr.close(); } catch (Exception e) {}

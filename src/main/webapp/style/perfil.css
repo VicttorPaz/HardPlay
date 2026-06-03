@@ -1,0 +1,330 @@
+/* ==========================================================
+   ESTILOS PREMIUM PARA LA ESTACIÓN DE PERFIL - HARDLEARN 2026
+   ========================================================== */
+
+.profile-main-layout {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* --- COLUMNA DE IDENTIDAD DE JUGADOR --- */
+.main-identity-card {
+    background-color: #ffffff;
+    border: 2px solid #e2e8f0;
+    border-radius: 24px;
+    padding: 35px 25px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+.avatar-glow-ring {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2ecc71, #3498db);
+    margin: 0 auto 20px;
+    padding: 6px;
+    box-shadow: 0 8px 20px rgba(46, 204, 113, 0.25);
+    box-sizing: border-box;
+}
+
+.avatar-glow-ring img {
+    width: 100%;
+    height: 100%;
+    background-color: #f8fafc;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-username {
+    font-size: 1.6rem;
+    color: #2c3e50;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+/* Badges de Roles */
+.badge-role {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+
+.badge-student {
+    background-color: #e8f5e9;
+    color: #2ecc71;
+}
+
+.badge-admin {
+    background-color: #fce4e4;
+    color: #e74c3c;
+}
+
+/* Sistema de Niveles RPG */
+.level-system-container {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 15px;
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.level-tags {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.current-level-text {
+    font-weight: 700;
+    color: #3498db;
+    font-size: 1.1rem;
+}
+
+.xp-numeric {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #64748b;
+}
+
+.xp-progress-bar {
+    background-color: #e2e8f0;
+    height: 12px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.xp-fill-line {
+    background: linear-gradient(90deg, #3498db, #2ecc71);
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.next-rank-hint {
+    font-size: 0.8rem;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Contacto y Botones */
+.parent-contact-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: #f1f5f9;
+    padding: 12px 15px;
+    border-radius: 12px;
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.parent-contact-box i {
+    font-size: 1.5rem;
+    color: #94a3b8;
+}
+
+.parent-contact-box label {
+    display: block;
+    font-size: 0.75rem;
+    color: #64748b;
+    font-weight: 600;
+}
+
+.parent-contact-box span {
+    font-size: 0.9rem;
+    color: #334155;
+    font-weight: 600;
+    word-break: break-all;
+}
+
+.btn-exit-profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    background-color: #f1f5f9;
+    color: #475569;
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 12px;
+    font-weight: 700;
+    transition: all 0.2s;
+}
+
+.btn-exit-profile:hover {
+    background-color: #e2e8f0;
+    color: #1e293b;
+}
+
+/* --- COLUMNA DE CONTENIDOS INTERACTIVOS --- */
+.interactive-panel-box {
+    background-color: #ffffff;
+    border: 2px solid #e2e8f0;
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    margin-bottom: 30px;
+}
+
+.interactive-panel-box h3 {
+    font-size: 1.4rem;
+    color: #2c3e50;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.interactive-panel-box p {
+    color: #64748b;
+    font-size: 0.95rem;
+    margin-bottom: 25px;
+}
+
+/* Rejilla de Selección de Avatar */
+.avatar-options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.avatar-seed-btn {
+    background-color: #f8fafc;
+    border: 2px solid #e2e8f0;
+    padding: 12px;
+    border-radius: 14px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: #475569;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.avatar-seed-btn:hover {
+    border-color: #2ecc71;
+    background-color: #e8f5e9;
+    color: #2ecc71;
+    transform: translateY(-2px);
+}
+
+.btn-save-custom {
+    background-color: #2ecc71;
+    color: #ffffff;
+    border: none;
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(46, 204, 113, 0.2);
+    transition: background-color 0.2s;
+}
+
+.btn-save-custom:hover {
+    background-color: #27ae60;
+}
+
+/* Vitrina de Medallas */
+.badges-showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.medal-card {
+    border: 2px solid #e2e8f0;
+    border-radius: 18px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    transition: transform 0.2s;
+}
+
+.medal-card h4 {
+    font-size: 1rem;
+    color: #2c3e50;
+    margin-bottom: 6px;
+}
+
+.medal-card p {
+    font-size: 0.8rem;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.medal-icon-shell {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin: 0 auto 15px;
+}
+
+/* Modificadores de Medallas Desbloqueadas */
+.medal-card.unlocked {
+    background-color: #f4fbf7;
+    border-color: #a7f3d0;
+}
+
+.medal-card.unlocked .medal-icon-shell {
+    background-color: #d1fae5;
+    color: #10b981;
+}
+
+/* Modificadores de Medallas Bloqueadas */
+.medal-card.locked {
+    background-color: #f8fafc;
+    opacity: 0.65;
+}
+
+.medal-card.locked .medal-icon-shell {
+    background-color: #e2e8f0;
+    color: #94a3b8;
+}
+
+.lock-tag {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    background-color: #cbd5e1;
+    color: #475569;
+    padding: 2px 8px;
+    border-radius: 20px;
+}
+
+/* Colores de Énfasis */
+.text-green { color: #2ecc71; }
+.text-gold { color: #f1c40f; }
+
+/* --- RESPONSIVE ADAPTATION --- */
+@media (max-width: 850px) {
+    .profile-main-layout {
+        grid-template-columns: 1fr;
+    }
+}

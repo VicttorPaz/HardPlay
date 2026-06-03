@@ -29,104 +29,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <style>
-        .quiz-wrapper {
-            max-width: 800px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
-        .quiz-card {
-            background-color: #1a1a1a;
-            border: 1px solid #2d2d2d;
-            border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-        .quiz-card h3 {
-            color: #ffffff;
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-        .quiz-image-container {
-            text-align: center;
-            margin-bottom: 20px;
-            background-color: #111111;
-            border-radius: 8px;
-            padding: 15px;
-            border: 1px solid #252525;
-        }
-        .quiz-image {
-            max-height: 180px;
-            max-width: 100%;
-            object-fit: contain;
-            border-radius: 4px;
-        }
-        .options-container {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        .option-label {
-            display: flex;
-            align-items: center;
-            background-color: #222222;
-            border: 1px solid #333333;
-            border-radius: 8px;
-            padding: 14px 18px;
-            color: #dddddd;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-size: 0.95rem;
-        }
-        .option-label:hover {
-            background-color: #2a2a2a;
-            border-color: #444444;
-            color: #ffffff;
-        }
-        .option-label input[type="radio"] {
-            margin-right: 15px;
-            accent-color: #ff9f1c;
-            transform: scale(1.1);
-        }
-        .option-label input[type="radio"]:checked + span {
-            color: #ff9f1c;
-            font-weight: 600;
-        }
-        .option-label:has(input[type="radio"]:checked) {
-            border-color: #ff9f1c;
-            background-color: rgba(255, 159, 28, 0.05);
-        }
-        .quiz-submit-btn {
-            background: linear-gradient(135deg, #ff9f1c, #f98404);
-            color: #ffffff;
-            border: none;
-            padding: 15px 40px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border-radius: 8px;
-            cursor: pointer;
-            width: 100%;
-            transition: transform 0.2s ease, opacity 0.2s ease;
-            font-family: 'Poppins', sans-serif;
-            margin-bottom: 5px;
-        }
-        .quiz-submit-btn:hover {
-            transform: translateY(-2px);
-            opacity: 0.95;
-        }
-        .badge-points {
-            float: right;
-            background-color: #252525;
-            color: #ff9f1c;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            border: 1px solid rgba(255,159,28,0.2);
-        }
-    </style>
+     <%@ include file="asistente.jsp" %>
+   <script src="accesibilidad.js"></script>
+    
+   
 </head>
 <body>
 
@@ -139,10 +45,13 @@
                 <li><a href="index.jsp">Inicio</a></li>
                  <li class="dropdown">
                     <a href="#">Partes del Computador <i class="bi bi-chevron-down" style="font-size: 0.8rem;"></i></a>
-                    <div class="dropdown-content">
+                       <div class="dropdown-content">
                         <a href="procesador.jsp"><i class="bi bi-cpu"></i> El Procesador</a>
                         <a href="ram.jsp"><i class="bi bi-memory"></i> Memoria RAM</a>
                         <a href="almacenamiento.jsp"><i class="bi bi-hdd-fill"></i> Almacenamiento</a>
+                        <a href="grafica.jsp"><i class="bi bi-gpu-card"></i> Tarjeta Gráfica</a>
+                        <a href="fuente.jsp"><i class="bi bi-lightning-charge-fill"></i> Fuente de Poder</a>
+                        <a href="tarjetamadre.jsp"><i class="bi bi-controller"></i> Tarjeta Madre</a>
                     </div>
                  </li>
                 <li><a href="laboratorio.jsp">Laboratorio 3D</a></li>
@@ -157,9 +66,10 @@
                     <div class="avatar-container-nav">
                         <img src="https://api.dicebear.com/7.x/bottts/svg?seed=<%= avatarLogueado.equals("gato") ? "cat" : avatarLogueado %>" alt="Avatar">
                     </div>
-                    <div class="profile-dropdown-menu">
-                        <a href="logout.jsp"><i class="bi bi-box-arrow-right"></i> Salir del Juego</a>
-                    </div>
+                     <div class="profile-dropdown-menu">
+                    <a href="mi_perfil.jsp"><i class="bi bi-person-bounding-box"></i> Mi Perfil</a>
+                    <a href="logout.jsp"><i class="bi bi-box-arrow-right"></i> Salir del Juego</a>
+                </div>
                 </div>
             <% } else { %>
                 <a href="register.jsp" class="user-profile-icon" title="Mi Cuenta">
